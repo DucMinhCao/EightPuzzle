@@ -1,0 +1,52 @@
+﻿<Window x:Class="navigation.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:navigation"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Window1" Height="524.5" Width="866.5" Loaded="Window_Loaded" Closing="Window_Closing" KeyDown="KeyDownEvent" KeyUp="KeyUpEvent">
+    <Grid Margin="0,0,2,-2" Height="498" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <Label Name="myGoal" Width="300" Margin="88,95,41,171" >
+            <Image Name="TheGoal"/>
+        </Label>
+        <TextBlock Name="TBCountdown" Margin="324,28,324,426" FontSize="30" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+        <Button Name="Save" Content="Save" Click="Save_Click" FontSize="30" Margin="143,28,171,426" Grid.Column="1"/>
+        <TextBox Name="Construction" Margin="88,348,86,40" FontSize="15" BorderThickness="0"/>
+        <Grid Name="myListButton" Margin="163,353,141,0" Grid.Column="1">
+            <Button x:Name="UpButton" Width="40" Height="40" Margin="40,14,40,86" Click="UpButton_Click">
+                <Image Name="uparrow" />
+            </Button>
+            <Button x:Name="DownButton" Width="40" Height="40" Margin="40,100,40,0" Click="DownButton_Click">
+                <Image Name="downarrow"/>
+            </Button>
+            <Button x:Name="LeftButton" Width="40" Height="40" Margin="-4,45,76,28" Click="LeftButton_Click">
+                <Image Name="leftarrow"/>
+            </Button>
+            <Button x:Name="RightButton" Width="40" Height="40" Margin="76,45,-4,28" Click="RightButton_Click">
+                <Image Name="rightarrow"/>
+            </Button>
+        </Grid>
+
+        <ListView Name="myListView" Width="300" Height="232"
+                  ItemsSource="{Binding myItems}" Background="Transparent" BorderThickness="0" Margin="73,95,56,171" MouseUp="MouseUpEvent" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Canvas>
+                        <Label Width="{Binding _Width}" Height="{Binding _Height}"
+                           Canvas.Left="{Binding Position.X}" Canvas.Top="{Binding Position.Y}" FontSize="50"
+                           MouseDown="MouseDownEvent" MouseUp="MouseUpEvent" MouseMove="MouseMoveEvent" Content="{Binding Content}" PreviewKeyDown="Label_PreviewKeyDown">
+                            <!--<Image Source="{Binding Content}" MouseDown="MouseDownEvent" MouseUp="MouseUpEvent" MouseMove="MouseMoveEvent"/>-->
+
+                        </Label>
+                    </Canvas>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
