@@ -113,18 +113,32 @@ namespace navigation
             List<int> int_list = new List<int>();
             int temp;
 
-            for (int i = 0; i < N * N; i++)
+            try
             {
-                int.TryParse(list[i], out temp);
-                int_list.Add(temp);
+                for (int i = 0; i < N * N; i++)
+                {
+                    int.TryParse(list[i], out temp);
+                    int_list.Add(temp);
+                }
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                string text = "Tiles' index were invalid. Please click 'OK' to start a new game or 'Cancel' to cancel the program.";
+                string caption = "Error";
+
+                reader.Close();
+
+                CannotLoad(text, caption);
             }
 
-            for(int i = 0; i < N * N; i++)
+            for (int i = 0; i < N * N; i++)
             {
                 if (int_list.Contains(i) == false)
                 {
                     string text = "Tiles' index were invalid. Please click 'OK' to start a new game or 'Cancel' to cancel the program.";
                     string caption = "Error";
+
+                    reader.Close();
 
                     CannotLoad(text, caption);
                 }
@@ -135,6 +149,8 @@ namespace navigation
             {
                 string text = "BlankTileIndex was invalid. Please click 'OK' to start a new game or 'Cancel' to cancel the program. ";
                 string caption = "Error";
+
+                reader.Close();
 
                 CannotLoad(text, caption);
             }
@@ -154,6 +170,8 @@ namespace navigation
                 string text = "File path was wrong. Please click 'OK' to choose other file or 'Cancel' to cancel the program. ";
                 string caption = "Error";
 
+                reader.Close();
+
                 CannotLoad(text, caption);
             }
 
@@ -164,10 +182,13 @@ namespace navigation
                 string text = "Time-set was invalid. Please click 'OK' to start a new game or 'Cancel' to cancel the program.";
                 string caption = "Error";
 
+                reader.Close();
+
                 CannotLoad(text, caption);
             }
 
             reader.Close();
+
         }
 
         private void CannotLoad(string sMessageBoxText, string sCaption)
@@ -503,8 +524,14 @@ namespace navigation
                 if (TilesIndexOrder[i] != i)
                     return false;
 
-            solved = true;
             return true;
+        }
+
+        private void stopWhenWon()
+        {
+            dispatcherTimer.Stop();
+
+            solved = true;
         }
 
         private void UpdateBlankTileIndex_Mouse()
@@ -662,6 +689,7 @@ namespace navigation
             InitSurroundingListOfItems();
             InitListOfKeys();
 
+            SelectedItemIndex = BlankTileIndex;
             //Init 4 buttons
             uparrow.Source = setButtnImage(uparrow.Name);
             downarrow.Source = setButtnImage(downarrow.Name);
@@ -857,7 +885,10 @@ namespace navigation
                 //state = 0 -> left; 1->up; 2->down; 3->right
                 HandleKeyDown(state);
                 if (checkIfWon() == true)
+                {
+                    stopWhenWon();
                     EndGame(1);
+                }
 
             }
 
@@ -927,8 +958,9 @@ namespace navigation
         private void UpButton_Click(object sender, RoutedEventArgs e)
         {
             HandleKeyDown(1);
-            if (checkIfWon())
+            if (checkIfWon() == true)
             {
+                stopWhenWon();
                 EndGame(1);
             }
         }
@@ -936,8 +968,9 @@ namespace navigation
         private void DownButton_Click(object sender, RoutedEventArgs e)
         {
             HandleKeyDown(2);
-            if (checkIfWon())
+            if (checkIfWon() == true)
             {
+                stopWhenWon();
                 EndGame(1);
             }
         }
@@ -945,8 +978,9 @@ namespace navigation
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
             HandleKeyDown(0);
-            if (checkIfWon())
+            if (checkIfWon() == true)
             {
+                stopWhenWon();
                 EndGame(1);
             }
         }
@@ -954,8 +988,9 @@ namespace navigation
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
             HandleKeyDown(3);
-            if (checkIfWon())
+            if (checkIfWon() == true)
             {
+                stopWhenWon();
                 EndGame(1);
             }
         }

@@ -61,5 +61,10 @@ namespace navigation
                 wd1.ShowDialog();
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(1);
+        }
     }
 }

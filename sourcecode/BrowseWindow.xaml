@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:navigation"
         mc:Ignorable="d"
-        Title="BrowseWindow" Height="450" Width="465.5" ResizeMode="NoResize">
+        Title="BrowseWindow" Height="450" Width="465.5" ResizeMode="NoResize" Closing="Window_Closing">
     <Canvas>
         <Button Content="Browse..." Click="OpenFile" FontSize="20" 
                 RenderTransformOrigin="-1.98,-2.048" Height="34" Canvas.Left="70" Canvas.Top="314" Width="92"/>

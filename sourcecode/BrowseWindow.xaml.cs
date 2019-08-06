@@ -123,5 +123,10 @@ namespace navigation
             }
             return true;
         }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            Environment.Exit(1);
+        }
     }
 }

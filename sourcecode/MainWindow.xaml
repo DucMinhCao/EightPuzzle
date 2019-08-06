@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:navigation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="421.5" Width="504.5" ResizeMode="NoResize">
+        Title="MainWindow" Height="421.5" Width="504.5" ResizeMode="NoResize" Closing="Window_Closing">
     <Canvas>
         <Image Name="imageCover" Width="400" Height="400" Canvas.Left="52" Canvas.Top="52"/>
         <Button Content="New Game" FontSize="20" MinWidth="100" Click="changeFrametoNewGame" Canvas.Left="188" Canvas.Top="264" Width="120"/>
