@@ -12,4 +12,5 @@ Thành viên trong nhóm:
 ```
 
 ## Video demo
+Video hơi dài nhưng em nghĩ là nó đầy đủ những exception cần thiết để bắt trong chương trình
 URL: [Lập trình Windows. Đồ án Midterm](https://www.youtube.com/watch?v=b-2r4eTcUxs&feature=youtu.be&fbclid=IwAR3Sw4KC6g7wRkbwWMdTiwaYFO7lbdvMJ0XOvDFYOwoQqFIkv9fyYBT3KzY)
